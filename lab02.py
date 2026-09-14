@@ -2,17 +2,11 @@
 # KUID: 3178995 
 # LAB Session (Day/Time): Wednesday 11am 
 # LAB Assignment: Lab 02
-# Description:
-#
-#
-#
-# Collaborators/Sources:
+# Description: Determines if an input mapping is a function or not.
+# If it is a function, it determines if it is one-to-one and onto.
+# Collaborators/Sources: N/A
 
-#   Note: if you are working in python, you are  
-#   REQUIRED to call this function to get your
-#   input, so all assignments are consistant 
-
-#   Returns a list of number,letter pairs
+#Returns a list of number,letter pairs
 def get_mapping_pairs() -> str:
     x = input("Enter your mapping pairs: ")
     items = x.replace("(","").replace(" ","").strip(")").split(")")
@@ -21,19 +15,16 @@ def get_mapping_pairs() -> str:
         pairs.append(item.split(","))
     return pairs
 
-# Your Code Here
-
-#Sample code
-#With the following input: (3, A) (2, D) (3, C)
+#Makes the pair list
 pair_list = get_mapping_pairs()
 
+#Stores the possible inputs and outputs and number of pairs
 num_pairs = len(pair_list)
 nums = ['0', '1', '2', '3',]
 letters = ['A', 'B', 'C', 'D']
 
 
-
-#Checks if a function
+#Checks if every number has exactly one output (is a function)
 is_function = True
 for x in nums:
     check = 0
@@ -43,6 +34,7 @@ for x in nums:
     if check != 1:
         is_function = False
 
+#Checks if a letter is used as an output more than once (is one-to-one)
 is_one_to_one = True
 for x in letters:
     check = 0
@@ -52,22 +44,25 @@ for x in letters:
     if check > 1:
         is_one_to_one = False
 
-
-
+#The following two blocks check if the function is onto or not
+#Creates a list of letters used as outputs
 is_onto = False
 inputted_letters =[]
 for pair in pair_list:
     inputted_letters.append(pair[1])
 
+#Checks to see if every letter is an output
 if 'A' in inputted_letters and 'B' in inputted_letters and 'C' in inputted_letters and 'D' in inputted_letters:
     is_onto = True
 
+
+#Makes the final result message based on the above checks
 result = ''
 
 if is_function:
     result += 'function, '
 else:
-    result += 'not a function'
+    result += 'not function'
 
 if is_function:
     if is_one_to_one:
